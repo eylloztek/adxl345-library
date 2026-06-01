@@ -50,6 +50,19 @@
 #define WAKEUP_2HZ					0x02
 #define WAKEUP_1HZ					0x03
 
+#define RANGE_2G					0x00
+#define RANGE_4G					0x01
+#define RANGE_8G					0x02
+#define RANGE_16G					0x03
+
+#define BANDWIDTH_RATE_1600			0x0F
+#define BANDWIDTH_RATE_800			0x0E
+#define BANDWIDTH_RATE_400			0x0D
+#define BANDWIDTH_RATE_200			0x0C
+#define BANDWIDTH_RATE_100			0x0B
+#define BANDWIDTH_RATE_50			0x0A
+#define BANDWIDTH_RATE_25			0x09
+
 typedef enum{
 	READ_FAIL = 0,
 	READ_SUCCESS = 1
@@ -74,6 +87,24 @@ typedef struct{
 	uint8_t Reserved: 2;
 
 }PowerControlRegister_t;
+
+typedef struct{
+	uint8_t Range: 2;
+	uint8_t Justify: 1;
+	uint8_t FULL_RES: 1;
+	uint8_t Reserved: 1;
+	uint8_t INT_INVERT: 1;
+	uint8_t SPI: 1;
+	uint8_t SELF_TEST: 1;
+
+}DataFormatRegister_t;
+
+typedef struct{
+	uint8_t Range: 4;
+	uint8_t LOW_POWER: 1;
+	uint8_t Reserved: 3;
+
+}BWRATERegister_t;
 
 int ADXL345_ScanDeviceID(void);
 ADXL345InitStatus ADXL345_Init(void);

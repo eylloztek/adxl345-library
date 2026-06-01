@@ -62,5 +62,27 @@ ADXL345InitStatus ADXL345_Init(void){
 
 	ADXL345_WriteRegisterData(POWER_CTL, tempReg);
 
+	DataFormatRegister_t dataFormatControl = {0};
+	dataFormatControl.Range = RANGE_4G;
+	dataFormatControl.Justify = 0x00;
+	dataFormatControl.FULL_RES = 0x00;
+	dataFormatControl.Reserved = 0x00;
+	dataFormatControl.INT_INVERT = 0x00;
+	dataFormatControl.SPI = 0x00;
+	dataFormatControl.SELF_TEST = 0x00;
+
+	tempReg = *((uint8_t*)&dataFormatControl);
+
+	ADXL345_WriteRegisterData(DATA_FORMAT, tempReg);
+
+	BWRATERegister_t BWRATEControl = {0};
+	BWRATEControl.Range = BANDWIDTH_RATE_800;
+	BWRATEControl.LOW_POWER = 0x00;
+	BWRATEControl.Reserved = 0x00;
+
+	tempReg = *((uint8_t*)&BWRATEControl);
+
+	ADXL345_WriteRegisterData(BW_RATE, tempReg);
+
 	return INIT_SUCCESS;
 }
