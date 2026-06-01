@@ -45,18 +45,40 @@
 
 #define TIMEOUT						1000
 
+#define WAKEUP_8HZ					0x00
+#define WAKEUP_4HZ					0x01
+#define WAKEUP_2HZ					0x02
+#define WAKEUP_1HZ					0x03
+
 typedef enum{
 	READ_FAIL = 0,
 	READ_SUCCESS = 1
 }ADXL345ReadStatus;
 
 typedef enum{
+	WRITE_FAIL = 0,
+	WRITE_SUCCESS = 1
+}ADXL345WriteStatus;
+
+typedef enum{
 	INIT_FAIL = 0,
 	INIT_SUCCESS = 1
 }ADXL345InitStatus;
 
+typedef struct{
+	uint8_t Wakeup: 2;
+	uint8_t Sleep: 1;
+	uint8_t Measure: 1;
+	uint8_t AUTO_SLEEP: 1;
+	uint8_t Link: 1;
+	uint8_t Reserved: 2;
+
+}PowerControlRegister_t;
+
 int ADXL345_ScanDeviceID(void);
 ADXL345InitStatus ADXL345_Init(void);
 ADXL345ReadStatus ADXL345_ReadRegisterData(uint16_t registerAddress, uint16_t sizeofData, uint8_t *dataBuffer);
+ADXL345WriteStatus ADXL345_WriteRegisterData(uint16_t registerAddress, uint16_t value);
+
 
 #endif /* INC_ADXL345_H_ */

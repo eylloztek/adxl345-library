@@ -28,6 +28,18 @@ ADXL345ReadStatus ADXL345_ReadRegisterData(uint16_t registerAddress, uint16_t si
 
 }
 
+ADXL345WriteStatus ADXL345_WriteRegisterData(uint16_t registerAddress, uint16_t value){
+	uint8_t data[2] = {0};
+	data[0] = registerAddress;
+	data[1] = value;
+
+	if (HAL_I2C_Master_Transmit(&hi2c1, ADXL345_DEVICE_ADDRESS, data, sizeof(data), TIMEOUT) == HAL_OK) {
+		return WRITE_SUCCESS;
+	}
+
+	return WRITE_FAIL;
+}
+
 ADXL345InitStatus ADXL345_Init(void){
 	uint8_t dataBuffer = 0;
 	ADXL345_ReadRegisterData(DEVID, 1, &dataBuffer);
@@ -35,6 +47,20 @@ ADXL345InitStatus ADXL345_Init(void){
 	if (dataBuffer != 0xE5) {
 		return INIT_FAIL;
 	}
+
+	uint8_t tempReg = 0;
+	PowerControlRegister_t powerControl = {0};
+
+	powerControl.Wakeup = WAKEUP_8HZ;
+	powerControl.Sleep = 0x00;
+	powerControl.Measure = 0x01;
+	powerControl.AUTO_SLEEP = 0x00;
+	powerControl.Link = 0x00;
+	powerControl.Reserved = 0x00;
+
+	tempReg = *((uint8_t*)&powerControl);
+
+	ADXL345_WriteRegisterData(POWER_CTL, tempReg);
 
 	return INIT_SUCCESS;
 }
