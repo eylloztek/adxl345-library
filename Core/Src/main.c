@@ -50,6 +50,10 @@ uint8_t deviceID = 0;
 ADXL345_RawData_t rawData;
 ADXL345_GData_t gData;
 ADXL345_Angle_t angle;
+
+int8_t offsetX = 0;
+int8_t offsetY = 0;
+int8_t offsetZ = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -99,6 +103,10 @@ int main(void) {
 
 	if (adxlStatus == ADXL345_OK) {
 		ADXL345_ReadDeviceID(&adxl345, &deviceID);
+	}
+	if (adxlStatus == ADXL345_OK) {
+		ADXL345_Calibrate(&adxl345, 100);
+		ADXL345_GetOffset(&adxl345, &offsetX, &offsetY, &offsetZ);
 	}
 
 	/* USER CODE END 2 */
