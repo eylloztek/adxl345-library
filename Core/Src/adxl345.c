@@ -86,3 +86,14 @@ ADXL345InitStatus ADXL345_Init(void){
 
 	return INIT_SUCCESS;
 }
+
+int16_t ADXL345_getAxisValue(uint8_t axis){
+	uint8_t data[2] = {0};
+	int16_t  outputData = 0;
+
+	ADXL345_ReadRegisterData(axis, 2, data);
+
+	outputData = ((data[1] << 8) | data[0]);
+
+	return outputData;
+}

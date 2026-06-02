@@ -45,6 +45,10 @@
 
 #define TIMEOUT						1000
 
+#define X							DATAX0
+#define Y							DATAY0
+#define Z 							DATAZ0
+
 #define WAKEUP_8HZ					0x00
 #define WAKEUP_4HZ					0x01
 #define WAKEUP_2HZ					0x02
@@ -110,6 +114,6 @@ int ADXL345_ScanDeviceID(void);
 ADXL345InitStatus ADXL345_Init(void);
 ADXL345ReadStatus ADXL345_ReadRegisterData(uint16_t registerAddress, uint16_t sizeofData, uint8_t *dataBuffer);
 ADXL345WriteStatus ADXL345_WriteRegisterData(uint16_t registerAddress, uint16_t value);
-
+int16_t ADXL345_getAxisValue(uint8_t axis);
 
 #endif /* INC_ADXL345_H_ */

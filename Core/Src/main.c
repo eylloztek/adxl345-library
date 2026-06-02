@@ -44,6 +44,9 @@ I2C_HandleTypeDef hi2c1;
 
 /* USER CODE BEGIN PV */
 ADXL345InitStatus result;
+int16_t xValue = 0;
+int16_t yValue = 0;
+int16_t zValue = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -101,6 +104,11 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+
+	  xValue = ADXL345_getAxisValue(X);
+	  yValue = ADXL345_getAxisValue(Y);
+	  zValue = ADXL345_getAxisValue(Z);
+
   }
   /* USER CODE END 3 */
 }
