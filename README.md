@@ -2,7 +2,7 @@
 
 A lightweight STM32 HAL-based driver for the **ADXL345 3-axis digital accelerometer** using the I2C interface.
 
-This library provides basic device initialization, range and data rate configuration, raw acceleration reading, g-unit conversion, roll/pitch angle calculation, and basic offset calibration.
+This library provides basic device initialization, range and data rate configuration, raw acceleration reading, g-unit conversion, roll/pitch angle calculation, and basic offset calibration. You can access the datasheet from [here.](https://www.analog.com/media/en/technical-documentation/data-sheets/adxl345.pdf)
 
 ## Features
 
@@ -437,4 +437,4 @@ typedef enum {
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](https://github.com/eylloztek/adxl345-library/LICENCE.txt) file for details.
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/eylloztek/adxl345-library/LICENSE.txt) file for details.
