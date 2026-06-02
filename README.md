@@ -437,4 +437,4 @@ typedef enum {
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](https://github.com/eylloztek/adxl345-library/LICENSE.txt) file for details.
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/eylloztek/adxl345-library/blob/master/LICENSE.txt) file for details.
