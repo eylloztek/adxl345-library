@@ -423,7 +423,40 @@ typedef enum {
 * The default initialization uses ±4g range and 100 Hz output data rate.
 * The calibration function assumes that the sensor is flat and stationary.
 * Roll and pitch values are reliable mainly for static or slow-moving tilt sensing.
-* If `atan2f()`, `sqrtf()`, or `roundf()` are used, the math library may need to be linked with `-lm`.
+
+## Math Library Note
+
+`ADXL345_CalculateRollPitch()` uses functions from `math.h`.
+
+If you get a linker error such as:
+
+```text
+undefined reference to `sqrt`
+```
+
+link the math library.
+
+For GCC-based toolchains, add:
+
+```text
+-lm
+```
+
+In STM32CubeIDE, this can usually be added from:
+
+```text
+Project Properties
+C/C++ Build
+Settings
+MCU GCC Linker
+Libraries
+```
+
+Add:
+
+```text
+m
+```
 
 ## Possible Future Improvements
 
